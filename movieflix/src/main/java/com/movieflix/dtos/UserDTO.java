@@ -1,5 +1,7 @@
 package com.movieflix.dtos;
 
+import com.movieflix.entities.User;
+
 public class UserDTO {
 
     private Long id;
@@ -13,6 +15,12 @@ public class UserDTO {
         this.id = id;
         this.name = name;
         this.email = email;
+    }
+
+    public UserDTO(User entity) {
+        id = entity.getId();
+        name = entity.getName();
+        email = entity.getEmail();
     }
 
     public Long getId() {

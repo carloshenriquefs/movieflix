@@ -74,6 +74,14 @@ public class Movie {
         this.year = year;
     }
 
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
     public String getImgUrl() {
         return imgUrl;
     }

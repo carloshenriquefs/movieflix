@@ -2,7 +2,10 @@ package com.movieflix.dtos;
 
 import com.movieflix.entities.Movie;
 
-public class MovieCardDTO {
+import java.io.Serializable;
+
+public class MovieCardDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String title;

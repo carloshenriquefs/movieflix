@@ -1,6 +1,9 @@
 package com.movieflix.dtos;
 
-public class ReviewDTO {
+import java.io.Serializable;
+
+public class ReviewDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String text;

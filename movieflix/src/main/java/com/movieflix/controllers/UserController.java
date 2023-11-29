@@ -16,8 +16,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasAnyRole('VISITOR', 'MEMBER')")
     @GetMapping(value = "/profile")
+    @PreAuthorize("hasAnyRole('VISITOR', 'MEMBER')")
     public ResponseEntity<UserDTO> getProfile() {
         UserDTO dto = userService.getProfile();
         return ResponseEntity.ok(dto);

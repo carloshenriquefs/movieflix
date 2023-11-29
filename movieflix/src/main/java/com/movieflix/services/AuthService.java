@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
+import static com.movieflix.constants.Constants.INVALID_USER;
+
 @Service
 public class AuthService {
 
@@ -24,7 +26,7 @@ public class AuthService {
 			return userRepository.findByEmail(username);
 		}
 		catch (Exception e) {
-			throw new UsernameNotFoundException("Invalid user");
+			throw new UsernameNotFoundException(INVALID_USER);
 		}
 	}
 }

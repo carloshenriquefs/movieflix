@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.movieflix.constants.Constants.UNATHORIZED_USER;
+
 @Service
 public class ReviewService {
 
@@ -29,7 +31,7 @@ public class ReviewService {
             copyDtoToEntity(reviewDTO, newReview);
             return new ReviewDTO(newReview);
         } catch (RuntimeException e) {
-            throw new UnauthorizedException("Usuário não Autorizado");
+            throw new UnauthorizedException(UNATHORIZED_USER);
         }
     }
 

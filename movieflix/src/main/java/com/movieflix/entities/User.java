@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "tb_user")
 public class User implements UserDetails {
@@ -29,6 +30,7 @@ public class User implements UserDetails {
     private List<Review> reviews = new ArrayList<>();
 
     public User() {
+
     }
 
     public User(Long id, String name, String email, String password) {
@@ -62,6 +64,10 @@ public class User implements UserDetails {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -73,67 +79,64 @@ public class User implements UserDetails {
     public List<Review> getReviews() {
         return reviews;
     }
-
+	
     public void addRole(Role role) {
-        roles.add(role);
+    	roles.add(role);
     }
+    
+	public boolean hasRole(String roleName) {
+		for (Role role : roles) {
+			if (role.getAuthority().equals(roleName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+    
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 
-    public boolean hasRole(String roleName) {
-        for (Role role : roles) {
-            if (role.getAuthority().equals(roleName)) {
-                return true;
-            }
-        }
-        return false;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(id, other.id);
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        User other = (User) obj;
-        return Objects.equals(id, other.id);
-    }
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+	@Override
+	public String getUsername() {
+		return email;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
 
-    @Override
-    public String getUsername() {
-        return null;
-    }
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}		
 }

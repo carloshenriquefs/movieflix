@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_movie")
@@ -14,7 +15,7 @@ public class Movie {
     private Long id;
     private String title;
     private String subTitle;
-
+    
     @Column(name = "movie_year")
     private Integer year;
     private String imgUrl;
@@ -29,7 +30,8 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     private List<Review> reviews = new ArrayList<>();
 
-    public Movie() {
+    public Movie(){
+
     }
 
     public Movie(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis, Genre genre) {
@@ -74,14 +76,6 @@ public class Movie {
         this.year = year;
     }
 
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
     public String getImgUrl() {
         return imgUrl;
     }
@@ -96,5 +90,30 @@ public class Movie {
 
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return Objects.equals(id, movie.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

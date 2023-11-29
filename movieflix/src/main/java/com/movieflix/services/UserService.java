@@ -1,5 +1,7 @@
 package com.movieflix.services;
 
+import java.util.List;
+
 import com.movieflix.dtos.UserDTO;
 import com.movieflix.entities.Role;
 import com.movieflix.entities.User;
@@ -12,13 +14,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository repository;
 
     @Autowired
     private AuthService authService;
@@ -30,7 +31,8 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<UserDetailsProjection> result = userRepository.searchUserAndRolesByEmail(username);
+
+        List<UserDetailsProjection> result = repository.searchUserAndRolesByEmail(username);
         if (result.size() == 0) {
             throw new UsernameNotFoundException("Email not found");
         }

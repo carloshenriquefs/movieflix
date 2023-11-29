@@ -2,11 +2,11 @@ package com.movieflix.entities;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_review")
-public class Review implements Serializable {
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,14 +23,15 @@ public class Review implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Review() {
+    public Review(){
+
     }
 
-    public Review(Long id, String text, User user, Movie movie) {
+    public Review(Long id, String text, Movie movie, User user) {
         this.id = id;
         this.text = text;
-        this.user = user;
         this.movie = movie;
+        this.user = user;
     }
 
     public Long getId() {
@@ -47,5 +48,34 @@ public class Review implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Review review = (Review) o;
+        return Objects.equals(id, review.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/genre")
+@RequestMapping(value = "/genres")
 public class GenreController {
 
     @Autowired
     private GenreService genreService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<GenreDTO>> findAll() {
         List<GenreDTO> genre = genreService.findAll();
         return ResponseEntity.ok(genre);

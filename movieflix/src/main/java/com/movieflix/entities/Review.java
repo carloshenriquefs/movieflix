@@ -1,6 +1,7 @@
 package com.movieflix.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Objects;
 
@@ -13,6 +14,7 @@ public class Review {
     private Long id;
 
     @Column(columnDefinition = "TEXT")
+    @NotBlank(message = "Campo obrigatório. Escreva a sua avaliação.")
     private String text;
 
     @ManyToOne
@@ -24,7 +26,6 @@ public class Review {
     private User user;
 
     public Review(){
-
     }
 
     public Review(Long id, String text, Movie movie, User user) {

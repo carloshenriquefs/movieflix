@@ -2,14 +2,15 @@ package com.movieflix.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "tb_genre")
-public class Genre {
-
+public class Genre implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,7 +20,6 @@ public class Genre {
     private Set<Movie> movies = new HashSet<>();
 
     public Genre() {
-
     }
 
     public Genre(Long id, String name) {

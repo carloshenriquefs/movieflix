@@ -33,13 +33,13 @@ https://www.figma.com/file/6JQVnxKgKtVHLleSBBgRin/MovieFlix-front-listagem?type=
 
 ## 🔍 - Casos de Uso:
 
-### :film_projector: - Listar Filmes:
+### 📽️ - Listar Filmes:
 
 - [x] - O sistema aprensenta uma listagem dos nomes de todos gêneros, bem como uma listagem paginada com título, subtítulo, ano e imagem dos filmes, ordenada alfabeticamente por título;
 - [x] - O usuário visitante ou membro seleciona, opcionalmente, um gênero;
 - [x] - O sistema apresenta a listagem atualzada, restringindo somente ao gênero selecionado;
 
-### :film_projector: - Visualizar detalhes do filme:
+### 📽️ - Visualizar detalhes do filme:
 
 - [x] - O usuário visitante ou membro seleciona um filme;
 - [x] - O sistema informa título, subtítulo, ano, imagem e sinopose do filme, e também uma listagem dos textos das avaliações daquele filme juntamente com nome do usuário que fez cada avaliação;
